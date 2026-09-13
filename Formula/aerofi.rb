@@ -16,6 +16,12 @@ class Aerofi < Formula
     bin.install "aerofi"
   end
 
+  service do
+    run opt_bin/"aerofi"
+    keep_alive true
+    process_type :interactive
+  end
+
   test do
     system "#{bin}/aerofi", "--version"
   end
