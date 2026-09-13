@@ -1,25 +1,22 @@
 class Aerofi < Formula
   desc "Lightweight, keyboard- and mouse-driven script launcher for macOS"
   homepage "https://github.com/frostymur/aerofi"
-  url "https://github.com/frostymur/aerofi/archive/refs/tags/v0.1.3.tar.gz"
-  sha256 "abfc8993be3a13db8f88ff5ddd11f98cc591fa7b08fe6661938d116fe34205e3"
+  version "0.1.4"
   license "MIT"
-  head "https://github.com/frostymur/aerofi.git", branch: "main"
 
-  depends_on "rust" => :build
-  depends_on :macos
-
-  def install
-    system "cargo", "install", *std_cargo_args
+  if Hardware::CPU.arm?
+    url "https://github.com/frostymur/aerofi/releases/download/v0.1.4/aerofi-mac-arm64.tar.gz"
+    sha256 "b17b552a778580637e909bbc2cb86fc60495000704988a8a115051a2962bbfc6"
+  else
+    url "https://github.com/frostymur/aerofi/releases/download/v0.1.4/aerofi-mac-x86_64.tar.gz"
+    sha256 "6c26f169edbee8e8beb485bb342db982f1e2253dcee1eea8678de2dbcd7c60a9"
   end
 
-  service do
-    run opt_bin/"aerofi"
-    keep_alive true
-    process_type :interactive
+  def install
+    bin.install "aerofi"
   end
 
   test do
-    assert_path_exists bin/"aerofi"
+    system "#{bin}/aerofi", "--version"
   end
 end
