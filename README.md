@@ -13,6 +13,9 @@ Or you can add the tap first and then install:
 ```bash
 brew tap frostymur/aerofi
 brew install aerofi
+
+# Start as a background service (starts automatically at login)
+brew services start aerofi
 ```
 
 ## Issues and Documentation

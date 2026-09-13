@@ -1,7 +1,6 @@
 class Aerofi < Formula
   desc "Lightweight, keyboard- and mouse-driven script launcher for macOS"
   homepage "https://github.com/frostymur/aerofi"
-  version "0.1.4"
   license "MIT"
 
   if Hardware::CPU.arm?
@@ -23,6 +22,6 @@ class Aerofi < Formula
   end
 
   test do
-    system "#{bin}/aerofi", "--version"
+    system bin/"aerofi", "--version"
   end
 end
